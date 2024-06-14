@@ -5,14 +5,17 @@ on:
       - master
 
 jobs:
-  build:
+build:
     name: Build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
         uses: actions/checkout@master
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
       - name: Install Dependencies
-        run: npm install
+        run: npm ci
       - name: Build and Generate
         run: npm run generate
       - name: Archive Production Artifact
